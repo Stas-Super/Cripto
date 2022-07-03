@@ -1,0 +1,39 @@
+﻿<Page x:Class="Crypto.Views.CryptoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Crypto.Views"
+      xmlns:converters="clr-namespace:Crypto.Converters"
+      mc:Ignorable="d" 
+      Loaded="Page_Loaded"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CryptoPage">
+    <Page.Resources>
+        <converters:PriceConverter x:Key="priceConverter"></converters:PriceConverter>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Grid.Row="0"
+               Grid.Column="1"
+               FontSize="20" 
+               Content="{Binding CoincapAsset.Name}"/>
+
+            <Label Content="{Binding CoincapAsset.PriceUsd, Converter={StaticResource priceConverter}}"/>
+            <Label Content="{Binding CoincapAsset.Explorer}"/>
+            <Label Content="{Binding CoincapAsset.MarketCapUsd, Converter={StaticResource priceConverter}}"/>
+        </StackPanel>
+        
+        <Canvas Height="200" Grid.Row="1" Grid.Column="0" x:Name="graph"/>
+    </Grid>
+</Page>
